@@ -1,3 +1,5 @@
-# BIS15W2021_ymoustafa
+# BIS 15L Repository
  
-hello world
+ This repository includes all of the .rmd files and data that was used in BIS15L 2021. 
+# Contact Info
+email: yamoustafa@ucdavis.edu
