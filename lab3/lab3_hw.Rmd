@@ -86,16 +86,14 @@ largesleepmean
 
 10. Which animal is the sleepiest among the entire dataframe?
 ```{r}
-smallawakemean <- mean(small$awake)
-smallawakemean
+max(sleep$sleep_total)
 ```
 
 ```{r}
-largeawakemean <- mean(large$awake)
-largeawakemean
+subset(sleep, sleep_total== 19.9)
 ```
 
-## small animals are sleepier, because they spend less time awake ##
+## The Little Brown Bat is the sleepiest ##
 
 ## Push your final code to GitHub!
 Please be sure that you check the `keep md` file in the knit preferences.   

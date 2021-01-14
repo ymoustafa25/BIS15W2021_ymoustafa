@@ -659,15 +659,17 @@ largesleepmean</code></pre>
 <ol start="10" style="list-style-type: decimal">
 <li>Which animal is the sleepiest among the entire dataframe?</li>
 </ol>
-<pre class="r"><code>smallawakemean &lt;- mean(small$awake)
-smallawakemean</code></pre>
-<pre><code>## [1] 11.34167</code></pre>
-<pre class="r"><code>largeawakemean &lt;- mean(large$awake)
-largeawakemean</code></pre>
-<pre><code>## [1] 20.70714</code></pre>
+<pre class="r"><code>max(sleep$sleep_total)</code></pre>
+<pre><code>## [1] 19.9</code></pre>
+<pre class="r"><code>subset(sleep, sleep_total== 19.9)</code></pre>
+<pre><code>## # A tibble: 1 x 11
+##   name  genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+##   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+## 1 Litt~ Myot~ inse~ Chir~ &lt;NA&gt;                19.9         2         0.2   4.1
+## # ... with 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
 </div>
-<div id="small-animals-are-sleepier-because-they-spend-less-time-awake" class="section level2">
-<h2>small animals are sleepier, because they spend less time awake</h2>
+<div id="the-little-brown-bat-is-the-sleepiest" class="section level2">
+<h2>The Little Brown Bat is the sleepiest</h2>
 </div>
 <div id="push-your-final-code-to-github" class="section level2">
 <h2>Push your final code to GitHub!</h2>
