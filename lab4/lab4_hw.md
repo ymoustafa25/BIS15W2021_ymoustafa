@@ -1,7 +1,7 @@
 ---
 title: "Lab 4 Homework"
 author: "Yumna Moustafa"
-date: "2021-01-18"
+date: "2021-01-19"
 output:
   html_document: 
     theme: spacelab
@@ -413,7 +413,7 @@ view(deer)
 snek <- filter(homerange, taxon == "snakes")
 view(snek)
 ```
-## Western worm snake is the smallest, they are a non-venomous snakes that mostly eat earthworms  ##
+## 	namaqua dwarf adder is the smallest, they are venomous snakes that may be the smallest vipers ##
 
 ## Push your final code to GitHub!
 Please be sure that you check the `keep md` file in the knit preferences.   
