@@ -1,7 +1,7 @@
 ---
 title: "Lab 4 Homework"
 author: "Yumna Moustafa"
-date: "2021-01-19"
+date: "2021-01-20"
 output:
   html_document: 
     theme: spacelab
@@ -35,7 +35,8 @@ homerange <- readr::read_csv("data/Tamburelloetal_HomeRangeDatabase.csv")
 ```
 
 ```
-## Parsed with column specification:
+## 
+## -- Column specification --------------------------------------------------------
 ## cols(
 ##   .default = col_character(),
 ##   mean.mass.g = col_double(),
@@ -46,10 +47,7 @@ homerange <- readr::read_csv("data/Tamburelloetal_HomeRangeDatabase.csv")
 ##   log10.preymass = col_double(),
 ##   PPMR = col_double()
 ## )
-```
-
-```
-## See spec(...) for full column specifications.
+## i Use `spec()` for the full column specifications.
 ```
 
 
