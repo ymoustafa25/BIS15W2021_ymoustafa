@@ -1,7 +1,7 @@
 ---
 title: "Lab 6 Homework"
 author: "Yumna Moustafa"
-date: "2021-01-25"
+date: "2021-01-26"
 output:
   html_document: 
     theme: spacelab
@@ -32,16 +32,14 @@ fisheries <- readr::read_csv("data/FAO_1950to2012_111914.csv")
 ```
 
 ```
-## Parsed with column specification:
+## 
+## -- Column specification --------------------------------------------------------
 ## cols(
 ##   .default = col_character(),
 ##   `ISSCAAP group#` = col_double(),
 ##   `FAO major fishing area` = col_double()
 ## )
-```
-
-```
-## See spec(...) for full column specifications.
+## i Use `spec()` for the full column specifications.
 ```
 
 1. Do an exploratory analysis of the data (your choice). What are the names of the variables, what are the dimensions, are there any NA's, what are the classes of the variables?  
@@ -549,10 +547,6 @@ new_fisheries %>%
 ```
 
 ```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```
 ## # A tibble: 193 x 2
 ##    country                  sumcatch
 ##    <fct>                       <dbl>
@@ -583,10 +577,6 @@ new_fisheries %>%
 ```
 
 ```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```
 ## # A tibble: 37 x 2
 ##    country               sumsardinecatch
 ##    <fct>                           <dbl>
@@ -602,6 +592,10 @@ new_fisheries %>%
 ## 10 Denmark                           477
 ## # ... with 27 more rows
 ```
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 8. Which five countries caught the most cephalopods between 2008-2012?
 
@@ -615,10 +609,6 @@ new_fisheries %>%
   group_by(country) %>%
   summarize(sumceph = sum(catch, na.rm = T)) %>%
   arrange(desc(sumceph))
-```
-
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
 ```
 
 ```
@@ -642,6 +632,7 @@ new_fisheries %>%
 ## 15 Somalia                        0
 ## 16 Viet Nam                       0
 ```
+</div>
 
 9. Which species had the highest catch total between 2008-2012? (hint: Osteichthyes is not a species)
 
@@ -655,10 +646,6 @@ new_fisheries %>%
   group_by(asfis_species_name) %>% 
   summarize(catchcount = sum(catch, na.rm= T)) %>% 
   arrange(desc(catchcount))
-```
-
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
 ```
 
 ```
@@ -691,7 +678,7 @@ new_fisheries %>%
 ```
 
 ```
-## `summarise()` regrouping output by 'isscaap_taxonomic_group' (override with `.groups` argument)
+## `summarise()` has grouped output by 'isscaap_taxonomic_group'. You can override using the `.groups` argument.
 ```
 
 ```
