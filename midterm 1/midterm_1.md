@@ -1,7 +1,7 @@
 ---
 title: "Midterm 1"
 author: "Yumna Moustafa"
-date: "2021-01-26"
+date: "2021-01-27"
 output:
   html_document: 
     theme: spacelab
@@ -404,14 +404,20 @@ ivindodata$LandUse <- as.factor(ivindodata$LandUse)
 ```r
 ivindodata %>% 
   filter(HuntCat == "Moderate" | HuntCat == "High") %>%
+  group_by(HuntCat) %>% 
   summarize(avedivbirds = mean(Diversity_BirdSpecies), avedivmammals = mean(Diversity_MammalSpecies))
 ```
 
 ```
-## # A tibble: 1 x 2
-##   avedivbirds avedivmammals
-##         <dbl>         <dbl>
-## 1        1.64          1.71
+## `summarise()` ungrouping output (override with `.groups` argument)
+```
+
+```
+## # A tibble: 2 x 3
+##   HuntCat  avedivbirds avedivmammals
+##   <fct>          <dbl>         <dbl>
+## 1 High            1.66          1.74
+## 2 Moderate        1.62          1.68
 ```
 
 
@@ -463,6 +469,28 @@ comparing
 ## 1    7.21     44.5      0.557        40.1      2.68        4.98 Greater than 20~
 ## 2    0.08     70.4      0.0967       24.1      3.66        1.59 Less than 5km
 ```
+
+
+```r
+hello <-ivindodata %>% 
+  mutate(DistancefrmVillage = ifelse(Distance > 20, yes ="greaterthan20",no=ifelse(Distance<5,yes= "lessthan5", no = NA))) %>%
+  filter(DistancefrmVillage == "greaterthan20"| DistancefrmVillage == "lessthan5") %>% 
+  group_by(DistancefrmVillage) %>% 
+  summarize(across(contains("RA_"), mean), .groups= 'keep')
+
+hello
+```
+
+```
+## # A tibble: 2 x 7
+## # Groups:   DistancefrmVillage [2]
+##   DistancefrmVill~ RA_Apes RA_Birds RA_Elephant RA_Monkeys RA_Rodent RA_Ungulate
+##   <chr>              <dbl>    <dbl>       <dbl>      <dbl>     <dbl>       <dbl>
+## 1 greaterthan20       7.21     44.5      0.557        40.1      2.68        4.98
+## 2 lessthan5           0.08     70.4      0.0967       24.1      3.66        1.59
+```
+
+
 
 #### The relative abundance of rodents and birds are greater at distances less than 5km from a village, and the relative abundances of apes, elephants, monkeys, and ungulates are greater at distances greater than 20Km from villages ####
 

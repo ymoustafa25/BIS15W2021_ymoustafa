@@ -119,6 +119,7 @@ ivindodata$LandUse <- as.factor(ivindodata$LandUse)
 ```{r}
 ivindodata %>% 
   filter(HuntCat == "Moderate" | HuntCat == "High") %>%
+  group_by(HuntCat) %>% 
   summarize(avedivbirds = mean(Diversity_BirdSpecies), avedivmammals = mean(Diversity_MammalSpecies))
 ```
 
@@ -145,6 +146,19 @@ comparing <- rbind.data.frame(greaterthan20dist, smallerthan5dist)
 comparing
   
 ```
+
+```{r}
+hello <-ivindodata %>% 
+  mutate(DistancefrmVillage = ifelse(Distance > 20, yes ="greaterthan20",no=ifelse(Distance<5,yes= "lessthan5", no = NA))) %>%
+  filter(DistancefrmVillage == "greaterthan20"| DistancefrmVillage == "lessthan5") %>% 
+  group_by(DistancefrmVillage) %>% 
+  summarize(across(contains("RA_"), mean), .groups= 'keep')
+
+hello
+
+```
+
+
 
 #### The relative abundance of rodents and birds are greater at distances less than 5km from a village, and the relative abundances of apes, elephants, monkeys, and ungulates are greater at distances greater than 20Km from villages ####
 
