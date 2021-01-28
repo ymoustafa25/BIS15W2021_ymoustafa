@@ -119,6 +119,7 @@ new_fisheries %>%
   
 ```
 
+
 8. Which five countries caught the most cephalopods between 2008-2012?
 
 #### India, China, Spain, Algeria, and France ####
@@ -131,6 +132,7 @@ new_fisheries %>%
   summarize(sumceph = sum(catch, na.rm = T)) %>%
   arrange(desc(sumceph))
 ```
+
 
 9. Which species had the highest catch total between 2008-2012? (hint: Osteichthyes is not a species)
 
