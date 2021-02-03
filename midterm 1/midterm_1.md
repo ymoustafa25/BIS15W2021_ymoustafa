@@ -1,7 +1,7 @@
 ---
 title: "Midterm 1"
 author: "Yumna Moustafa"
-date: "2021-01-27"
+date: "2021-02-02"
 output:
   html_document: 
     theme: spacelab
@@ -45,7 +45,8 @@ elephants <- readr::read_csv("data/ElephantsMF.csv")
 ```
 
 ```
-## Parsed with column specification:
+## 
+## -- Column specification --------------------------------------------------------
 ## cols(
 ##   Age = col_double(),
 ##   Height = col_double(),
@@ -82,8 +83,8 @@ Table: Data summary
 
 **Variable type: numeric**
 
-|skim_variable | n_missing| complete_rate|   mean|   sd|    p0|    p25|    p50|    p75|   p100|hist                                     |
-|:-------------|---------:|-------------:|------:|----:|-----:|------:|------:|------:|------:|:----------------------------------------|
+|skim_variable | n_missing| complete_rate|   mean|   sd|    p0|    p25|    p50|    p75|   p100|hist  |
+|:-------------|---------:|-------------:|------:|----:|-----:|------:|------:|------:|------:|:-----|
 |Age           |         0|             1|  10.97|  8.4|  0.01|   4.58|   9.46|  16.50|  32.17|▆▇▂▂▂ |
 |Height        |         0|             1| 187.68| 50.6| 75.46| 160.75| 200.00| 221.09| 304.06|▃▃▇▇▁ |
 
@@ -161,13 +162,9 @@ elephants %>%
 ```
 
 ```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```
 ## # A tibble: 2 x 3
 ##   sex   meanage meanheight
-##   <fct>   <dbl>      <dbl>
+## * <fct>   <dbl>      <dbl>
 ## 1 F       12.8        190.
 ## 2 M        8.95       185.
 ```
@@ -184,13 +181,9 @@ elephants %>%
 ```
 
 ```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```
 ## # A tibble: 2 x 5
 ##   sex   averageheight numbersamples minheight maxheight
-##   <fct>         <dbl>         <int>     <dbl>     <dbl>
+## * <fct>         <dbl>         <int>     <dbl>     <dbl>
 ## 1 F              233.            25      206.      278.
 ## 2 M              273.             8      237.      304.
 ```
@@ -208,16 +201,14 @@ ivindodata <- readr::read_csv("data/IvindoData_DryadVersion.csv")
 ```
 
 ```
-## Parsed with column specification:
+## 
+## -- Column specification --------------------------------------------------------
 ## cols(
 ##   .default = col_double(),
 ##   HuntCat = col_character(),
 ##   LandUse = col_character()
 ## )
-```
-
-```
-## See spec(...) for full column specifications.
+## i Use `spec()` for the full column specifications.
 ```
 
 ```r
@@ -341,8 +332,8 @@ Table: Data summary
 
 **Variable type: numeric**
 
-|skim_variable           | n_missing| complete_rate|  mean|    sd|    p0|   p25|   p50|   p75|  p100|hist                                     |
-|:-----------------------|---------:|-------------:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|:----------------------------------------|
+|skim_variable           | n_missing| complete_rate|  mean|    sd|    p0|   p25|   p50|   p75|  p100|hist  |
+|:-----------------------|---------:|-------------:|-----:|-----:|-----:|-----:|-----:|-----:|-----:|:-----|
 |TransectID              |         0|             1| 13.50|  8.51|  1.00|  5.75| 14.50| 20.25| 27.00|▇▃▅▆▆ |
 |Distance                |         0|             1| 11.88|  7.28|  2.70|  5.67|  9.72| 17.68| 26.76|▇▂▂▅▂ |
 |NumHouseholds           |         0|             1| 37.88| 17.80| 13.00| 24.75| 29.00| 54.00| 73.00|▇▇▂▇▂ |
@@ -409,13 +400,9 @@ ivindodata %>%
 ```
 
 ```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```
 ## # A tibble: 2 x 3
 ##   HuntCat  avedivbirds avedivmammals
-##   <fct>          <dbl>         <dbl>
+## * <fct>          <dbl>         <dbl>
 ## 1 High            1.66          1.74
 ## 2 Moderate        1.62          1.68
 ```
@@ -507,13 +494,9 @@ ivindodata %>%
 ```
 
 ```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```
 ## # A tibble: 2 x 3
 ##   LandUse birddiversity birdabundance
-##   <fct>           <dbl>         <dbl>
+## * <fct>           <dbl>         <dbl>
 ## 1 Logging          1.56          62.7
 ## 2 Park             1.77          44.0
 ```
