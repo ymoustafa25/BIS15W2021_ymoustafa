@@ -59,6 +59,7 @@ sydneybeaches <-read_csv(here("lab8", "data", "sydneybeaches.csv")) %>% janitor:
 ```{r}
 sydneybeaches_long <- sydneybeaches %>% 
   select(site, date,enterococci_cfu_100ml)
+sydneybeaches_long
 ```
 
 4. Pivot the data such that the dates are column names and each beach only appears once. Name the object `sydneybeaches_wide`
@@ -67,6 +68,7 @@ sydneybeaches_long <- sydneybeaches %>%
 sydneybeaches_wide <- sydneybeaches_long %>% 
    pivot_wider(names_from = "date", 
               values_from = "enterococci_cfu_100ml")
+sydneybeaches_wide
 ```
 
 5. Pivot the data back so that the dates are data and not column names.
@@ -75,6 +77,7 @@ sydneybeaches_longer<-sydneybeaches_wide %>%
   pivot_longer(-site,
                names_to = "date",
               values_to = "enterococci_cfu_100ml")
+sydneybeaches_longer
 ```
 
 
@@ -82,6 +85,7 @@ sydneybeaches_longer<-sydneybeaches_wide %>%
 ```{r}
 sydneybeaches_longd <- sydneybeaches_long %>% 
   separate(date, into <- c("month", "day", "year"), sep= "/")
+sydneybeaches_longd
 ```
 
 
@@ -92,7 +96,7 @@ meanenterolong <-sydneybeaches_longd %>%
   group_by(site, year) %>% 
   summarize(meanentero = mean(enterococci_cfu_100ml, na.rm = T), .groups = "keep") %>% 
   arrange(year)
-
+meanenterolong
 ```
 
 
@@ -102,6 +106,7 @@ meanenterolong <-sydneybeaches_longd %>%
 meanenterolonger <- meanenterolong %>% 
 pivot_wider(names_from = "year", values_from= "meanentero"
 )
+meanenterolonger
 ```
 
 9. What was the most polluted beach in 2018?
