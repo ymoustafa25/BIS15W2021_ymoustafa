@@ -1,7 +1,7 @@
 ---
 title: "Lab 10 Homework"
 author: "Yumna Moustafa"
-date: "2021-02-11"
+date: "2021-02-15"
 output:
   html_document: 
     theme: spacelab
@@ -34,7 +34,8 @@ deserts <- read_csv(here("lab10", "data", "surveys_complete.csv"))
 ```
 
 ```
-## Parsed with column specification:
+## 
+## -- Column specification --------------------------------------------------------
 ## cols(
 ##   record_id = col_double(),
 ##   month = col_double(),
@@ -111,8 +112,8 @@ Table: Data summary
 
 **Variable type: numeric**
 
-|skim_variable   | n_missing| complete_rate|     mean|       sd|   p0|     p25|     p50|      p75|  p100|hist                                     |
-|:---------------|---------:|-------------:|--------:|--------:|----:|-------:|-------:|--------:|-----:|:----------------------------------------|
+|skim_variable   | n_missing| complete_rate|     mean|       sd|   p0|     p25|     p50|      p75|  p100|hist  |
+|:---------------|---------:|-------------:|--------:|--------:|----:|-------:|-------:|--------:|-----:|:-----|
 |record_id       |         0|          1.00| 17804.20| 10229.68|    1| 8964.25| 17761.5| 26654.75| 35548|▇▇▇▇▇ |
 |month           |         0|          1.00|     6.47|     3.40|    1|    4.00|     6.0|    10.00|    12|▇▆▆▅▇ |
 |day             |         0|          1.00|    16.10|     8.25|    1|    9.00|    16.0|    23.00|    31|▆▇▇▇▆ |
@@ -168,7 +169,7 @@ deserts %>%
 ```
 ## # A tibble: 26 x 2
 ##    genus                n
-##    <chr>            <int>
+##  * <chr>            <int>
 ##  1 Ammodramus           2
 ##  2 Ammospermophilus   437
 ##  3 Amphispiza         303
@@ -190,7 +191,7 @@ deserts %>%
 ```
 ## # A tibble: 40 x 2
 ##    species             n
-##    <chr>           <int>
+##  * <chr>           <int>
 ##  1 albigula         1252
 ##  2 audubonii          75
 ##  3 baileyi          2891
@@ -346,10 +347,6 @@ deserts %>%
   group_by(species) %>% 
   summarize(meanweight = mean(weight, na.rm=T)) %>% 
   arrange(desc(meanweight))
-```
-
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
 ```
 
 ```
