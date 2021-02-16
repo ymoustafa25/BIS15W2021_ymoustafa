@@ -1,7 +1,7 @@
 ---
 title: "Lab 9 Homework"
 author: "Yumna Moustafa"
-date: "2021-02-09"
+date: "2021-02-14"
 output:
   html_document: 
     theme: spacelab
@@ -24,7 +24,7 @@ library(here)
 library(naniar)
 library(devtools)
 #devtools::install_github("brooke-watson/BRRR")
-library(BRRR)
+#library(BRRR)
 ```
 
 For this homework, we will take a departure from biological data and use data about California colleges. These data are a subset of the national college scorecard (https://collegescorecard.ed.gov/data/). Load the `ca_college_data.csv` as a new object called `colleges`.
@@ -34,7 +34,8 @@ colleges <- readr::read_csv("data/ca_college_data.csv")
 ```
 
 ```
-## Parsed with column specification:
+## 
+## -- Column specification --------------------------------------------------------
 ## cols(
 ##   INSTNM = col_character(),
 ##   CITY = col_character(),
@@ -216,10 +217,6 @@ colleges %>%
 ```
 
 ```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```
 ## # A tibble: 161 x 2
 ##    city                meancost
 ##    <chr>                  <dbl>
@@ -309,6 +306,24 @@ colleges %>%
 ```r
 uccolleges <- colleges %>% 
   filter(str_detect(instnm, "University of California"))
+uccolleges
+```
+
+```
+## # A tibble: 10 x 10
+##    instnm city  stabbr zip   adm_rate sat_avg pcip26 costt4_a c150_4_pooled
+##    <chr>  <chr> <chr>  <chr>    <dbl>   <dbl>  <dbl>    <dbl>         <dbl>
+##  1 Unive~ La J~ CA     92093    0.357    1324  0.216    31043         0.872
+##  2 Unive~ Irvi~ CA     92697    0.406    1206  0.107    31198         0.876
+##  3 Unive~ Rive~ CA     92521    0.663    1078  0.149    31494         0.73 
+##  4 Unive~ Los ~ CA     9009~    0.180    1334  0.155    33078         0.911
+##  5 Unive~ Davis CA     9561~    0.423    1218  0.198    33904         0.850
+##  6 Unive~ Sant~ CA     9506~    0.578    1201  0.193    34608         0.776
+##  7 Unive~ Berk~ CA     94720    0.169    1422  0.105    34924         0.916
+##  8 Unive~ Sant~ CA     93106    0.358    1281  0.108    34998         0.816
+##  9 Unive~ San ~ CA     9410~   NA          NA NA           NA        NA    
+## 10 Unive~ San ~ CA     9414~   NA          NA NA           NA        NA    
+## # ... with 1 more variable: pftftug1_ef <dbl>
 ```
 
 Remove `Hastings College of Law` and `UC San Francisco` and store the final data frame as a new object `univ_calif_final`.
@@ -317,6 +332,22 @@ Remove `Hastings College of Law` and `UC San Francisco` and store the final data
 univ_calif_final<- uccolleges %>% 
   filter(instnm != "University of California-San Francisco") %>%
   filter(instnm != "University of California-Hastings College of Law")
+univ_calif_final
+```
+
+```
+## # A tibble: 8 x 10
+##   instnm city  stabbr zip   adm_rate sat_avg pcip26 costt4_a c150_4_pooled
+##   <chr>  <chr> <chr>  <chr>    <dbl>   <dbl>  <dbl>    <dbl>         <dbl>
+## 1 Unive~ La J~ CA     92093    0.357    1324  0.216    31043         0.872
+## 2 Unive~ Irvi~ CA     92697    0.406    1206  0.107    31198         0.876
+## 3 Unive~ Rive~ CA     92521    0.663    1078  0.149    31494         0.73 
+## 4 Unive~ Los ~ CA     9009~    0.180    1334  0.155    33078         0.911
+## 5 Unive~ Davis CA     9561~    0.423    1218  0.198    33904         0.850
+## 6 Unive~ Sant~ CA     9506~    0.578    1201  0.193    34608         0.776
+## 7 Unive~ Berk~ CA     94720    0.169    1422  0.105    34924         0.916
+## 8 Unive~ Sant~ CA     93106    0.358    1281  0.108    34998         0.816
+## # ... with 1 more variable: pftftug1_ef <dbl>
 ```
 
 Use `separate()` to separate institution name into two new columns "UNIV" and "CAMPUS".
@@ -324,6 +355,22 @@ Use `separate()` to separate institution name into two new columns "UNIV" and "C
 ```r
 univ_calif_final <- univ_calif_final %>% 
   separate(instnm, into= c("UNIV", "CAMPUS"), sep= "-")
+univ_calif_final
+```
+
+```
+## # A tibble: 8 x 11
+##   UNIV  CAMPUS city  stabbr zip   adm_rate sat_avg pcip26 costt4_a c150_4_pooled
+##   <chr> <chr>  <chr> <chr>  <chr>    <dbl>   <dbl>  <dbl>    <dbl>         <dbl>
+## 1 Univ~ San D~ La J~ CA     92093    0.357    1324  0.216    31043         0.872
+## 2 Univ~ Irvine Irvi~ CA     92697    0.406    1206  0.107    31198         0.876
+## 3 Univ~ River~ Rive~ CA     92521    0.663    1078  0.149    31494         0.73 
+## 4 Univ~ Los A~ Los ~ CA     9009~    0.180    1334  0.155    33078         0.911
+## 5 Univ~ Davis  Davis CA     9561~    0.423    1218  0.198    33904         0.850
+## 6 Univ~ Santa~ Sant~ CA     9506~    0.578    1201  0.193    34608         0.776
+## 7 Univ~ Berke~ Berk~ CA     94720    0.169    1422  0.105    34924         0.916
+## 8 Univ~ Santa~ Sant~ CA     93106    0.358    1281  0.108    34998         0.816
+## # ... with 1 more variable: pftftug1_ef <dbl>
 ```
 
 9. The column `ADM_RATE` is the admissions rate by campus. Which UC has the lowest and highest admissions rates? Produce a numerical summary and an appropriate plot.
@@ -376,7 +423,7 @@ univ_calif_final %>%
 ![](lab9_hw_files/figure-html/unnamed-chunk-18-1.png)<!-- -->
 
 ```r
-skrrrahh((44))
+#skrrrahh((44))
 ```
 
 ## Knit Your Output and Post to [GitHub](https://github.com/FRS417-DataScienceBiologists)

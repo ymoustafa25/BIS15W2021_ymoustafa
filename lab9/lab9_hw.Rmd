@@ -25,7 +25,7 @@ library(here)
 library(naniar)
 library(devtools)
 #devtools::install_github("brooke-watson/BRRR")
-library(BRRR)
+#library(BRRR)
 ``` 
 
 For this homework, we will take a departure from biological data and use data about California colleges. These data are a subset of the national college scorecard (https://collegescorecard.ed.gov/data/). Load the `ca_college_data.csv` as a new object called `colleges`.
@@ -130,7 +130,7 @@ colleges %>%
 ```{r}
 uccolleges <- colleges %>% 
   filter(str_detect(instnm, "University of California"))
-  
+uccolleges
 ```
 
 Remove `Hastings College of Law` and `UC San Francisco` and store the final data frame as a new object `univ_calif_final`.
@@ -138,12 +138,14 @@ Remove `Hastings College of Law` and `UC San Francisco` and store the final data
 univ_calif_final<- uccolleges %>% 
   filter(instnm != "University of California-San Francisco") %>%
   filter(instnm != "University of California-Hastings College of Law")
+univ_calif_final
 ```
 
 Use `separate()` to separate institution name into two new columns "UNIV" and "CAMPUS".
 ```{r}
 univ_calif_final <- univ_calif_final %>% 
   separate(instnm, into= c("UNIV", "CAMPUS"), sep= "-")
+univ_calif_final
 ```
 
 9. The column `ADM_RATE` is the admissions rate by campus. Which UC has the lowest and highest admissions rates? Produce a numerical summary and an appropriate plot.
@@ -173,7 +175,7 @@ univ_calif_final %>%
   ggplot(aes(x=CAMPUS, y=pcip26))+
   geom_col()
 
-skrrrahh((44))
+#skrrrahh((44))
 ```
 
 ## Knit Your Output and Post to [GitHub](https://github.com/FRS417-DataScienceBiologists)
