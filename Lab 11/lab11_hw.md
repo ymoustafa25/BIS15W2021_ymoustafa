@@ -1,7 +1,7 @@
 ---
 title: "Lab 11 Homework"
 author: "Yumna Moustafa"
-date: "2021-02-16"
+date: "2021-02-18"
 output:
   html_document: 
     theme: spacelab
@@ -37,10 +37,6 @@ For this assignment, we are going to use the dataset [gapminder](https://cran.r-
 ```r
 #install.packages("gapminder")
 library("gapminder")
-```
-
-```
-## Warning: package 'gapminder' was built under R version 4.0.3
 ```
 
 ## Questions
@@ -97,10 +93,6 @@ gapminder %>%
   theme_calc()
 ```
 
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
 ![](lab11_hw_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
 
 
@@ -131,7 +123,7 @@ gapminder %>%
 ```
 
 ```
-## `summarise()` regrouping output by 'country' (override with `.groups` argument)
+## `summarise()` has grouped output by 'country'. You can override using the `.groups` argument.
 ```
 
 ```
@@ -173,7 +165,7 @@ gapminder %>%
 ```
 
 ```
-## `summarise()` regrouping output by 'year' (override with `.groups` argument)
+## `summarise()` has grouped output by 'year'. You can override using the `.groups` argument.
 ```
 
 ![](lab11_hw_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
@@ -248,10 +240,6 @@ gapminder%>%
        x = "Country",
        y = "Population Growth")+
   theme(plot.title = element_text(size = rel(1.5), hjust = 0.5))
-```
-
-```
-## `summarise()` ungrouping output (override with `.groups` argument)
 ```
 
 ![](lab11_hw_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
