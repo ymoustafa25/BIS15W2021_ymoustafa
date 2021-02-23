@@ -1110,13 +1110,12 @@ pop_longer %>%
   geom_line()+
   scale_x_discrete(breaks=seq(1920, 2020, by = 5))+
   theme(axis.text.x = element_text(angle = 90, hjust = 1), 
-        plot.title = element_text(size = rel(1.5), hjust = 0.6),
-        panel.background = element_rect(fill="grey")
+        plot.title = element_text(size = rel(1.5), hjust = 0.6)
         )+
    labs(title = "Population Vs Year",
        x = "Year",
        y = "Life Expectancy")+
-  scale_colour_brewer(palette = "GnBu")
+  scale_colour_brewer(palette = "Set1")
 ```
 
 ![](midterm_2_files/figure-html/unnamed-chunk-17-1.png)<!-- -->
