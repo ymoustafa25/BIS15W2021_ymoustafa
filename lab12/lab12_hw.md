@@ -1,7 +1,7 @@
 ---
 title: "Lab 12 Homework"
 author: "Yumna Moustafa"
-date: "2021-02-25"
+date: "2021-03-01"
 output:
   html_document: 
     theme: spacelab
@@ -38,7 +38,8 @@ grizzly <- read_csv(here("lab12", "data", "bear-sightings.csv"))
 ```
 
 ```
-## Parsed with column specification:
+## 
+## -- Column specification --------------------------------------------------------
 ## cols(
 ##   bear.id = col_double(),
 ##   longitude = col_double(),
@@ -76,7 +77,83 @@ map1 <- get_map(bbox, maptype = "terrain", source = "stamen")
 ```
 
 ```
-## Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under ODbL.
+## Source : http://tile.stamen.com/terrain/5/1/6.png
+```
+
+```
+## Source : http://tile.stamen.com/terrain/5/2/6.png
+```
+
+```
+## Source : http://tile.stamen.com/terrain/5/3/6.png
+```
+
+```
+## Source : http://tile.stamen.com/terrain/5/4/6.png
+```
+
+```
+## Source : http://tile.stamen.com/terrain/5/1/7.png
+```
+
+```
+## Source : http://tile.stamen.com/terrain/5/2/7.png
+```
+
+```
+## Source : http://tile.stamen.com/terrain/5/3/7.png
+```
+
+```
+## Source : http://tile.stamen.com/terrain/5/4/7.png
+```
+
+```
+## Source : http://tile.stamen.com/terrain/5/1/8.png
+```
+
+```
+## Source : http://tile.stamen.com/terrain/5/2/8.png
+```
+
+```
+## Source : http://tile.stamen.com/terrain/5/3/8.png
+```
+
+```
+## Source : http://tile.stamen.com/terrain/5/4/8.png
+```
+
+```
+## Source : http://tile.stamen.com/terrain/5/1/9.png
+```
+
+```
+## Source : http://tile.stamen.com/terrain/5/2/9.png
+```
+
+```
+## Source : http://tile.stamen.com/terrain/5/3/9.png
+```
+
+```
+## Source : http://tile.stamen.com/terrain/5/4/9.png
+```
+
+```
+## Source : http://tile.stamen.com/terrain/5/1/10.png
+```
+
+```
+## Source : http://tile.stamen.com/terrain/5/2/10.png
+```
+
+```
+## Source : http://tile.stamen.com/terrain/5/3/10.png
+```
+
+```
+## Source : http://tile.stamen.com/terrain/5/4/10.png
 ```
 
 
@@ -103,7 +180,8 @@ wolves <- read_csv(here("lab12", "data", "wolves_data","wolves_dataset.csv"))
 ```
 
 ```
-## Parsed with column specification:
+## 
+## -- Column specification --------------------------------------------------------
 ## cols(
 ##   .default = col_double(),
 ##   pop = col_character(),
@@ -111,10 +189,7 @@ wolves <- read_csv(here("lab12", "data", "wolves_data","wolves_dataset.csv"))
 ##   sex = col_character(),
 ##   color = col_character()
 ## )
-```
-
-```
-## See spec(...) for full column specifications.
+## i Use `spec()` for the full column specifications.
 ```
 
 ```r
@@ -124,29 +199,29 @@ glimpse(wolves)
 ```
 ## Rows: 1,986
 ## Columns: 23
-## $ pop                <chr> "AK.PEN", "AK.PEN", "AK.PEN", "AK.PEN", "AK.PEN"...
-## $ year               <dbl> 2006, 2006, 2006, 2006, 2006, 2006, 2006, 2006, ...
-## $ age.cat            <chr> "S", "S", "A", "S", "A", "A", "A", "P", "S", "P"...
-## $ sex                <chr> "F", "M", "F", "M", "M", "M", "F", "M", "F", "M"...
-## $ color              <chr> "G", "G", "G", "B", "B", "G", "G", "G", "G", "G"...
-## $ lat                <dbl> 57.03983, 57.03983, 57.03983, 57.03983, 57.03983...
-## $ long               <dbl> -157.8427, -157.8427, -157.8427, -157.8427, -157...
-## $ habitat            <dbl> 254.08, 254.08, 254.08, 254.08, 254.08, 254.08, ...
-## $ human              <dbl> 10.42, 10.42, 10.42, 10.42, 10.42, 10.42, 10.42,...
-## $ pop.density        <dbl> 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, ...
-## $ pack.size          <dbl> 8.78, 8.78, 8.78, 8.78, 8.78, 8.78, 8.78, 8.78, ...
-## $ standard.habitat   <dbl> -1.6339, -1.6339, -1.6339, -1.6339, -1.6339, -1....
-## $ standard.human     <dbl> -0.9784, -0.9784, -0.9784, -0.9784, -0.9784, -0....
-## $ standard.pop       <dbl> -0.6827, -0.6827, -0.6827, -0.6827, -0.6827, -0....
-## $ standard.packsize  <dbl> 1.3157, 1.3157, 1.3157, 1.3157, 1.3157, 1.3157, ...
-## $ standard.latitude  <dbl> 0.7214, 0.7214, 0.7214, 0.7214, 0.7214, 0.7214, ...
-## $ standard.longitude <dbl> -2.1441, -2.1441, -2.1441, -2.1441, -2.1441, -2....
-## $ cav.binary         <dbl> 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
-## $ cdv.binary         <dbl> 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ...
-## $ cpv.binary         <dbl> 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, ...
-## $ chv.binary         <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, ...
-## $ neo.binary         <dbl> NA, NA, NA, 0, 0, NA, NA, 1, 0, 1, NA, 0, NA, NA...
-## $ toxo.binary        <dbl> NA, NA, NA, 1, 0, NA, NA, 1, 0, 0, NA, 0, NA, NA...
+## $ pop                <chr> "AK.PEN", "AK.PEN", "AK.PEN", "AK.PEN", "AK.PEN", "~
+## $ year               <dbl> 2006, 2006, 2006, 2006, 2006, 2006, 2006, 2006, 200~
+## $ age.cat            <chr> "S", "S", "A", "S", "A", "A", "A", "P", "S", "P", "~
+## $ sex                <chr> "F", "M", "F", "M", "M", "M", "F", "M", "F", "M", "~
+## $ color              <chr> "G", "G", "G", "B", "B", "G", "G", "G", "G", "G", "~
+## $ lat                <dbl> 57.03983, 57.03983, 57.03983, 57.03983, 57.03983, 5~
+## $ long               <dbl> -157.8427, -157.8427, -157.8427, -157.8427, -157.84~
+## $ habitat            <dbl> 254.08, 254.08, 254.08, 254.08, 254.08, 254.08, 254~
+## $ human              <dbl> 10.42, 10.42, 10.42, 10.42, 10.42, 10.42, 10.42, 10~
+## $ pop.density        <dbl> 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, ~
+## $ pack.size          <dbl> 8.78, 8.78, 8.78, 8.78, 8.78, 8.78, 8.78, 8.78, 8.7~
+## $ standard.habitat   <dbl> -1.6339, -1.6339, -1.6339, -1.6339, -1.6339, -1.633~
+## $ standard.human     <dbl> -0.9784, -0.9784, -0.9784, -0.9784, -0.9784, -0.978~
+## $ standard.pop       <dbl> -0.6827, -0.6827, -0.6827, -0.6827, -0.6827, -0.682~
+## $ standard.packsize  <dbl> 1.3157, 1.3157, 1.3157, 1.3157, 1.3157, 1.3157, 1.3~
+## $ standard.latitude  <dbl> 0.7214, 0.7214, 0.7214, 0.7214, 0.7214, 0.7214, 0.7~
+## $ standard.longitude <dbl> -2.1441, -2.1441, -2.1441, -2.1441, -2.1441, -2.144~
+## $ cav.binary         <dbl> 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ~
+## $ cdv.binary         <dbl> 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ~
+## $ cpv.binary         <dbl> 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, ~
+## $ chv.binary         <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, ~
+## $ neo.binary         <dbl> NA, NA, NA, 0, 0, NA, NA, 1, 0, 1, NA, 0, NA, NA, N~
+## $ toxo.binary        <dbl> NA, NA, NA, 1, 0, NA, NA, 1, 0, 0, NA, 0, NA, NA, N~
 ```
 
 6. How many distinct wolf populations are included in this study? Mae a new object that restricts the data to the wolf populations in the lower 48 US states.
@@ -220,13 +295,9 @@ wolves %>%
 ```
 
 ```
-## `summarise()` ungrouping output (override with `.groups` argument)
-```
-
-```
 ## # A tibble: 17 x 2
 ##    pop     meanpacksize
-##    <chr>          <dbl>
+##  * <chr>          <dbl>
 ##  1 AK.PEN          8.78
 ##  2 BAN.JAS         9.56
 ##  3 BC              5.88
