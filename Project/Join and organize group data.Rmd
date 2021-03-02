@@ -1,0 +1,95 @@
+---
+title: "group project excel join"
+author: "Aryss Hearne"
+date: "2/26/2021"
+output: 
+  html_document: 
+    keep_md: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#install.packages("stringr")
+```
+
+
+```{r}
+library(tidyverse)
+library(here)
+library(janitor)
+library(naniar)
+library(stringr)
+```
+
+```{r}
+
+virus<-readr::read_csv("data/viruses.csv")
+```
+
+
+```{r}
+virus2<-virus%>%
+  separate(`Organism Groups`, into = c("viruss","other","family"),sep=";") %>% 
+  select(-"viruss",-"other")
+virus2 <- janitor::clean_names(virus2)
+
+```
+
+
+```{r}
+
+virus3<-virus2 %>% 
+  separate(`host`, into = c("host1","host2","host3","host4", "host5"),sep=",")
+view(virus3)
+
+naniar::miss_var_summary(virus3)
+
+```
+
+
+```{r}
+virus3<- virus3 %>%
+  mutate(strain=word(organism_name, 1L,2, sep=fixed(" ")))
+
+new<- as.data.frame(table(virus3$strain)) %>% 
+  #filter(Freq==10) %>% 
+  rename(strain=Var1)
+
+virus4 <- full_join(virus3, new, by="strain")
+
+virus4<-virus4 %>% 
+  filter(Freq==5) %>% 
+  select(-host3,-host4,-host5)
+
+naniar::miss_var_summary(virus4)
+  
+view(virus4)
+  
+          
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
