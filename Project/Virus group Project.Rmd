@@ -1,0 +1,159 @@
+---
+title: "group project excel join"
+author: "Aryss Hearne"
+date: "2/26/2021"
+output: 
+  html_document: 
+    keep_md: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#install.packages("stringr")
+```
+
+
+```{r}
+library(tidyverse)
+library(here)
+library(janitor)
+library(naniar)
+library(stringr)
+```
+
+```{r}
+
+virus<-readr::read_csv("data/viruses.csv")
+```
+
+
+```{r}
+virus2<-virus%>%
+  separate(`Organism Groups`, into = c("viruss","other","family"),sep=";") %>% 
+  select(-"viruss",-"other")
+virus2 <- janitor::clean_names(virus2)
+
+```
+
+
+```{r}
+
+virus3<-virus2 %>% 
+  separate(`host`, into = c("host1","host2","host3","host4", "host5"),sep=",")
+view(virus3)
+
+naniar::miss_var_summary(virus3)
+
+```
+
+
+```{r}
+virus3<- virus3 %>%
+  mutate(strain=word(organism_name, 1L,2, sep=fixed(" ")))
+
+new<- as.data.frame(table(virus3$strain)) %>% 
+  #filter(Freq==10) %>% 
+  rename(strain=Var1)
+
+virus4 <- full_join(virus3, new, by="strain")
+
+virus4<-virus4 %>%
+  mutate(size_to_gene_ratio= ifelse(genes>0,size_mb/genes,NA )) %>% 
+  mutate(number_of_hosts=ifelse(is.na(host1), 0, ifelse(is.na(host2), 1, 
+                                       ifelse(is.na(host3), 2,
+                                              ifelse(is.na(host4), 3, 
+                                                     ifelse(is.na(host5), 4, 5)))))) %>% 
+  select(organism_name, family, strain, size_mb, gc_percent, genes, size_to_gene_ratio, number_of_hosts, host1, host2, host3, host4, host5, Freq)
+
+virus5<-virus4 %>% 
+  filter(Freq==10) %>% 
+  select(-host3,-host4,-host5)
+
+naniar::miss_var_summary(virus4)
+  
+view(virus5)
+  
+          
+
+```
+
+
+
+```{r}
+virus4 %>% 
+  ggplot(aes(x=number_of_hosts, y=size_to_gene_ratio, group=number_of_hosts))+
+  geom_col()
+
+virus4 %>% 
+  ggplot(aes(x=number_of_hosts, y=size_mb, group=number_of_hosts))+
+  geom_col()
+
+virus5 %>% 
+  filter(!is.na(host1)) %>% 
+  ggplot(aes(x=host1, y=size_to_gene_ratio, group=host1, fill=strain))+
+  geom_col()
+
+virus5 %>% 
+  filter(!is.na(host1)) %>% 
+  ggplot(aes(x=host1, y=genes, group=host1,fill=strain ))+
+  geom_col()
+
+virus5 %>% 
+  filter(!is.na(host1)) %>% 
+  ggplot(aes(x=host1, y=size_mb, group=host1, fill=strain))+
+  geom_col()
+
+
+virus4 %>% 
+  ggplot(aes(x=size_mb, y=genes))+
+  geom_point()
+
+
+
+```
+
+
+
+
+
+```{r}
+virus4 %>% 
+  group_by(family) %>% 
+  summarize(countt=n_distinct(organism_name), ave_num_host=mean(number_of_hosts)) %>% 
+  arrange(desc(ave_num_host))
+
+
+```
+
+
+
+```{r}
+
+virus4 %>% 
+  filter(family=="Phenuiviridae") %>% 
+  ggplot(aes(x=number_of_hosts, y=size_to_gene_ratio, group=number_of_hosts))+
+  geom_col()
+
+virus4 %>% 
+  filter(family=="Phenuiviridae") %>% 
+  ggplot(aes(x=number_of_hosts, y=size_mb, group=number_of_hosts))+
+  geom_col()
+  
+  
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
