@@ -43,6 +43,14 @@ virus2 <- janitor::clean_names(virus2)
 
 virus3<-virus2 %>% 
   separate(`host`, into = c("host1","host2","host3","host4", "host5"),sep=",")
+
+newv <- virus2 %>% 
+  separate_rows(host)
+
+
+
+library(tidyr)
+
 view(virus3)
 
 naniar::miss_var_summary(virus3)
@@ -66,7 +74,18 @@ virus4<-virus4 %>%
                                        ifelse(is.na(host3), 2,
                                               ifelse(is.na(host4), 3, 
                                                      ifelse(is.na(host5), 4, 5)))))) %>% 
-  select(organism_name, family, strain, size_mb, gc_percent, genes, size_to_gene_ratio, number_of_hosts, host1, host2, host3, host4, host5, Freq)
+  select(organism_name, family, strain, size_mb, gc_percent, genes, size_to_gene_ratio, number_of_hosts, host1, host2, host3, host4, host5, Freq) 
+
+
+
+virus4$host_f <- paste(virus4$host1, virus4$host2,virus4$host3,virus4$host4,virus4$host5, sep=",")
+
+virus4 <- virus4 %>% 
+  separate_rows(host_f, sep=",") %>% 
+  filter(host_f!="NA")
+
+?separate_rows
+
 
 virus5<-virus4 %>% 
   filter(Freq==10) %>% 
@@ -74,7 +93,7 @@ virus5<-virus4 %>%
 
 naniar::miss_var_summary(virus4)
   
-view(virus5)
+view(virus4)
   
           
 
@@ -85,15 +104,16 @@ view(virus5)
 ```{r}
 virus4 %>% 
   ggplot(aes(x=number_of_hosts, y=size_to_gene_ratio, group=number_of_hosts))+
-  geom_col()
+  geom_col(fill="skyblue", alpha=0.7)
 
 virus4 %>% 
   ggplot(aes(x=number_of_hosts, y=size_mb, group=number_of_hosts))+
-  geom_col()
+  geom_col(fill="skyblue", alpha=0.7)
 
 virus5 %>% 
-  filter(!is.na(host1)) %>% 
-  ggplot(aes(x=host1, y=size_to_gene_ratio, group=host1, fill=strain))+
+  filter(!is.na(host_f)) %>% 
+  f
+  ggplot(aes(x=host_f, y=size_to_gene_ratio, group=host1, fill=strain))+
   geom_col()
 
 virus5 %>% 
@@ -109,9 +129,9 @@ virus5 %>%
 
 virus4 %>% 
   ggplot(aes(x=size_mb, y=genes))+
-  geom_point()
+  geom_point(fill="skyblue", alpha=0.7)
 
-
+view(virus4)
 
 ```
 
@@ -135,14 +155,15 @@ virus4 %>%
 virus4 %>% 
   filter(family=="Phenuiviridae") %>% 
   ggplot(aes(x=number_of_hosts, y=size_to_gene_ratio, group=number_of_hosts))+
-  geom_col()
+  geom_col(fill="skyblue", alpha=0.7)
 
 virus4 %>% 
   filter(family=="Phenuiviridae") %>% 
   ggplot(aes(x=number_of_hosts, y=size_mb, group=number_of_hosts))+
-  geom_col()
+  geom_col(fill="skyblue", alpha=0.7)
   
-  
+ 
+
 ```
 
 
