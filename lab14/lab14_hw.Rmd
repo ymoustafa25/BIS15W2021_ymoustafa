@@ -122,6 +122,10 @@ iplotScanone(singqtl)
 ```
 
 #### The D4Mit164 marker on chromosome 4 has the highest LOD score ####
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 **9. Based on your genome scan results, create a table which only includes those chromosomes with LOD > 1. Creates an interactive chart with LOD curves linked to estimated QTL effects for only those chromosomes with LOD > 1. Find the gene maker with the highest LOD score and describe how does the genetype of this marker influence the individual's phenotype.**
 ```{r}
@@ -132,6 +136,7 @@ iplotScanone(singqtl,hyper_drop, chr=c(1,2,4,5,6,15))
 ```
 
 #### The D4Mit164 marker on chromosome 4 has the highest LOD score. Having this marker means you are more likely to have a higher blood pressure ####
+</div>
 
 **10. Please save your interactive chart from Q9 as a html file `hyper_iplotScanone.html` and make sure your upload it to your github repository with your lab14 homework as well.**
 ```{r}
